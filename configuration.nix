@@ -84,6 +84,7 @@
 
   environment.systemPackages = with pkgs; [
      vscode
+     obs-studio  
      fastfetch
      gnome-tweaks     
      bibata-cursors    
