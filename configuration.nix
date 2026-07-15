@@ -93,6 +93,9 @@
      easyeffects
      cava
      gparted
+     
+     lutris
+     wine
 
      android-studio
      jetbrains.idea
@@ -105,6 +108,8 @@
      jdk
      gcc
      gnumake
+
+     xwayland-satellite
    ];
   
   # Fonts Configuration
