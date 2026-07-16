@@ -12,11 +12,12 @@
       url = "github:FreesmTeam/FreesmLauncher";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    noctalia = {
-    url = "github:noctalia-dev/noctalia";
-    inputs.nixpkgs.follows = "nixpkgs"; 
-    };
-  };
+    noctalia.url = "github:noctalia-dev/noctalia/cachix";
+   # noctalia = {
+   # url = "github:noctalia-dev/noctalia";
+   # inputs.nixpkgs.follows = "nixpkgs"; 
+   # };
+   };
 
   outputs = { self, nixpkgs, nixpkgs-unstable, zen-browser, freesmlauncher, ... }@inputs: 
   let
