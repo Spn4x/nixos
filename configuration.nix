@@ -11,7 +11,7 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   # Use latest kernel.
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.kernelPackages = pkgs.linuxPackages_zen;
 
   networking.hostName = "nixos"; # Define your hostname.
 
@@ -46,6 +46,13 @@
   services.displayManager.gdm.enable = true;
   services.desktopManager.gnome.enable = true;
   services.openssh.enable = true;
+  
+
+  environment.gnome.excludePackages = with pkgs; [
+    epiphany       
+    gnome-software
+    gnome-contacts 
+  ];
 
   # Configure keymap in X11
   services.xserver.xkb = {
@@ -82,6 +89,10 @@
   programs.kdeconnect.enable = true;
   nixpkgs.config.allowUnfree = true;
 
+  services.thermald.enable = true;
+
+  programs.gpu-screen-recorder.enable = true;
+
   environment.systemPackages = with pkgs; [
      vscode
      obs-studio  
@@ -95,6 +106,8 @@
      easyeffects
      cava
      gparted
+
+     gpu-screen-recorder-gtk
      
      lutris
      wine
