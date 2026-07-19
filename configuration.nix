@@ -11,7 +11,7 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   # Use latest kernel.
-  boot.kernelPackages = pkgs.linuxPackages_zen;
+  boot.kernelPackages = pkgs.linuxPackages_latest;
 
   networking.hostName = "nixos"; # Define your hostname.
 
@@ -102,6 +102,7 @@
      phinger-cursors  
      vanilla-dmz 
      foot
+     btop
      brave
      easyeffects
      cava
@@ -152,6 +153,14 @@
     "com.github.neithern.g4music"
     "io.mrarm.mcpelauncher"
   ];
+
+    zramSwap = {
+    enable = true;
+    algorithm = "zstd";
+    memoryPercent = 50; 
+    priority = 100;
+  };
+
 
   system.stateVersion = "26.05"; 
   nix.settings = {
