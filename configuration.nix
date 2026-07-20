@@ -93,9 +93,15 @@
 
   programs.gpu-screen-recorder.enable = true;
 
+  services.mysql = {
+  enable = true;
+  package = pkgs.mysql84; 
+  };
+
   environment.systemPackages = with pkgs; [
      vscode
      obs-studio  
+     obsidian
      fastfetch
      gnome-tweaks     
      bibata-cursors    
@@ -114,7 +120,11 @@
      wine
 
      android-studio
+     android-tools
      jetbrains.idea
+
+     mysql-workbench
+     mysql84
      
      inputs.freesmlauncher.packages.${system}.freesmlauncher
      inputs.zen-browser.packages."${pkgs.system}".default
