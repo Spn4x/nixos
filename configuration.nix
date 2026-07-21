@@ -126,7 +126,6 @@
      mysql-workbench
      mysql84
      
-     inputs.freesmlauncher.packages.${system}.freesmlauncher
      inputs.zen-browser.packages."${pkgs.system}".default
      inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default
 

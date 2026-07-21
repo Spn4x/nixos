@@ -8,10 +8,10 @@
     zen-browser.url = "github:youwen5/zen-browser-flake";
     zen-browser.inputs.nixpkgs.follows = "nixpkgs";
 
-    freesmlauncher = {
-      url = "github:FreesmTeam/FreesmLauncher";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+   # freesmlauncher = {
+   #   url = "github:FreesmTeam/FreesmLauncher";
+   #   inputs.nixpkgs.follows = "nixpkgs";
+   # };
     noctalia.url = "github:noctalia-dev/noctalia/cachix";
    # noctalia = {
    # url = "github:noctalia-dev/noctalia";
@@ -19,7 +19,7 @@
    # };
    };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, zen-browser, freesmlauncher, ... }@inputs: 
+  outputs = { self, nixpkgs, nixpkgs-unstable, zen-browser, ... }@inputs: 
   let
     system = "x86_64-linux";
     
