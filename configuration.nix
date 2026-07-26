@@ -111,6 +111,8 @@
      btop
      brave
      easyeffects
+     spotify
+     spotiflac
      cava
      gparted
 
@@ -138,6 +140,7 @@
    ];
   
   # Fonts Configuration
+  fonts.fontDir.enable = true;
   fonts.packages = with pkgs; [
     inter
     jetbrains-mono
@@ -147,13 +150,26 @@
     
     corefonts
     vista-fonts
-    google-fonts
     noto-fonts
     noto-fonts-cjk-sans
     noto-fonts-cjk-serif
     noto-fonts-color-emoji
     liberation_ttf
+
+    stix-two
+    dejavu_fonts
   ];
+  
+
+  fonts.fontconfig = {
+  enable = true;
+  defaultFonts = {
+      sansSerif = [ "Inter" "Noto Sans" "Noto Sans CJK JP" ];
+      serif     = [ "Noto Serif" "Noto Serif CJK JP" ];
+      monospace = [ "JetBrainsMono Nerd Font" "Noto Sans Mono CJK JP" ];
+      emoji     = [ "Noto Color Emoji" ];
+    };
+  };
 
   # Declarative Flatpaks
   services.flatpak.enable = true;
@@ -162,6 +178,7 @@
     "com.github.neithern.g4music"
     "io.mrarm.mcpelauncher"
   ];
+
 
     zramSwap = {
     enable = true;
