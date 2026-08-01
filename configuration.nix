@@ -1,4 +1,4 @@
-{ config, pkgs, inputs, pkgs-unstable, ... }:
+{ config, pkgs, inputs, pkgs-unstable, freesmlauncher, ... }:
 
 {
   imports =
@@ -17,7 +17,16 @@
 
   # Enable networking
   networking.networkmanager.enable = true;
-  services.power-profiles-daemon.enable = true;
+  services.power-profiles-daemon.enable = false;
+
+  # Enable TLP with battery charge thresholds
+  services.tlp = {
+    enable = true;
+    settings = {
+      START_CHARGE_THRESH_BAT0 = 40;
+      STOP_CHARGE_THRESH_BAT0 = 80;
+    };
+  };
   hardware.bluetooth.enable = true;
   services.upower.enable = true;
 
@@ -115,6 +124,7 @@
      spotiflac
      cava
      gparted
+     dysk
 
      gpu-screen-recorder-gtk
      
@@ -130,6 +140,8 @@
      
      inputs.zen-browser.packages."${pkgs.system}".default
      inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default
+
+     inputs.freesmlauncher.packages.${system}.freesmlauncher
 
      git
      jdk
