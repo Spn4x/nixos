@@ -128,6 +128,7 @@
 
      #gpu-screen-recorder-gtk
      onlyoffice-desktopeditors
+     localsend
      
      lutris
      wine
@@ -148,6 +149,9 @@
      jdk
      gcc
      gnumake
+
+     nodejs
+     live-server
 
      xwayland-satellite
    ];
