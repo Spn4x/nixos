@@ -126,14 +126,15 @@
      gparted
      dysk
 
-     gpu-screen-recorder-gtk
+     #gpu-screen-recorder-gtk
+     onlyoffice-desktopeditors
      
      lutris
      wine
 
      android-studio
      android-tools
-     jetbrains.idea
+     #jetbrains.idea
 
      mysql-workbench
      mysql84
