@@ -133,7 +133,7 @@
      lutris
      wine
 
-     android-studio
+     #android-studio
      android-tools
      #jetbrains.idea
 
@@ -194,6 +194,7 @@
     "org.vinegarhq.Sober"
     "com.github.neithern.g4music"
     "io.mrarm.mcpelauncher"
+    "com.google.AndroidStudio"
   ];
 
 
