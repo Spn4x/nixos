@@ -13,7 +13,19 @@ let
     inherit (pkgs) system;
     config.allowUnfree = true;
   };
+  b4 = import inputs.nixpkgs-batch4 {
+    inherit (pkgs) system;
+    config.allowUnfree = true;
+  };
+in
 
+let
+  # Custom Flake Apps Group
+  custom = [
+    inputs.zen-browser.packages.${pkgs.system}.default
+    inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default
+    inputs.freesmlauncher.packages.${pkgs.system}.freesmlauncher
+  ];
 in
 {
   imports =
@@ -129,7 +141,7 @@ environment.gnome.excludePackages = with pkgs; [
   package = pkgs.mysql84; 
   };
 
-environment.systemPackages = with pkgs; [
+environment.systemPackages = (with pkgs; [
      # --- b1 ---
      b1.spotiflac
      b1.obsidian
@@ -147,6 +159,12 @@ environment.systemPackages = with pkgs; [
      b3.mysql-workbench
      b3.localsend
 
+     # --- b4 ---
+     b4.jdk
+     b4.mysql84
+     b4.gcc
+     b4.nodejs
+
      # --- non batched ---
      fastfetch
      bibata-cursors    
@@ -157,26 +175,19 @@ environment.systemPackages = with pkgs; [
      cava
      gparted
      dysk
-     mysql84
-     inputs.zen-browser.packages."${pkgs.system}".default
-     inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default
-     inputs.freesmlauncher.packages.${pkgs.system}.freesmlauncher
      git
-     jdk
-     gcc
      gnumake
-     nodejs
      live-server
      xwayland-satellite
 
      # --- commented ---
      # gnome-tweaks     
-     # spotify
-     # gpu-screen-recorder-gtk
-     # wine
-     # android-studio
-     # jetbrains.idea
-   ];
+     #spotify
+     #gpu-screen-recorder-gtk
+     #wine
+     #android-studio
+     #jetbrains.idea
+   ]) ++ custom;
   
   # Fonts Configuration
   fonts.fontDir.enable = true;
