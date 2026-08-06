@@ -1,4 +1,4 @@
-{ config, pkgs, inputs, pkgs-unstable, freesmlauncher, ... }:
+{ config, pkgs, inputs, freesmlauncher, ... }:
 
 {
   imports =
@@ -150,7 +150,7 @@ environment.gnome.excludePackages = with pkgs; [
      inputs.zen-browser.packages."${pkgs.system}".default
      inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default
 
-     inputs.freesmlauncher.packages.${system}.freesmlauncher
+     inputs.freesmlauncher.packages.${pkgs.system}.freesmlauncher
 
      git
      jdk
@@ -219,8 +219,14 @@ environment.gnome.excludePackages = with pkgs; [
     auto-optimise-store = true;
     
     # Bypasses local compilation for Noctalia
-    extra-substituters = [ "https://noctalia.cachix.org" ];
-    extra-trusted-public-keys = [ "noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4=" ];
+    extra-substituters = [
+      "https://noctalia.cachix.org"
+      "https://freesmlauncher.cachix.org"
+    ];
+    extra-trusted-public-keys = [
+      "noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4="
+      "freesmlauncher.cachix.org-1:hX0BqSt13djXVbhagJ6toEEBA15xxZPWwKGpYksuiQ0="
+    ];
   };
 
   boot.loader.systemd-boot.configurationLimit = 2;
