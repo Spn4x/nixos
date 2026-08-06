@@ -23,7 +23,7 @@
   services.tlp = {
     enable = true;
     settings = {
-      START_CHARGE_THRESH_BAT0 = 40;
+      START_CHARGE_THRESH_BAT0 = 70;
       STOP_CHARGE_THRESH_BAT0 = 80;
     };
   };
@@ -57,10 +57,17 @@
   services.openssh.enable = true;
   
 
-  environment.gnome.excludePackages = with pkgs; [
+environment.gnome.excludePackages = with pkgs; [
     epiphany       
     gnome-software
     gnome-contacts 
+    gnome-music
+    gnome-weather
+    gnome-tour
+    gnome-characters
+    gnome-connections
+    gnome-logs
+    gnome-font-viewer
   ];
 
   # Configure keymap in X11
@@ -93,14 +100,14 @@
   };
 
   programs.zsh.enable = true;
-  programs.firefox.enable = true;
+  programs.firefox.enable = false;
   programs.niri.enable = true;
   programs.kdeconnect.enable = true;
   nixpkgs.config.allowUnfree = true;
 
   services.thermald.enable = true;
 
-  programs.gpu-screen-recorder.enable = true;
+  programs.gpu-screen-recorder.enable = false;
 
   services.mysql = {
   enable = true;
@@ -112,7 +119,7 @@
      obs-studio  
      obsidian
      fastfetch
-     gnome-tweaks     
+     # gnome-tweaks     
      bibata-cursors    
      phinger-cursors  
      vanilla-dmz 
@@ -168,8 +175,8 @@
     corefonts
     vista-fonts
     noto-fonts
-    noto-fonts-cjk-sans
-    noto-fonts-cjk-serif
+    #noto-fonts-cjk-sans
+    #noto-fonts-cjk-serif
     noto-fonts-color-emoji
     liberation_ttf
 
