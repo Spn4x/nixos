@@ -1,5 +1,20 @@
 { config, pkgs, inputs, freesmlauncher, ... }:
 
+let
+  b1 = import inputs.nixpkgs-batch1 {
+    inherit (pkgs) system;
+    config.allowUnfree = true;
+  };
+  b2 = import inputs.nixpkgs-batch2 {
+    inherit (pkgs) system;
+    config.allowUnfree = true;
+  };
+  b3 = import inputs.nixpkgs-batch3 {
+    inherit (pkgs) system;
+    config.allowUnfree = true;
+  };
+
+in
 {
   imports =
     [ # Include the results of the hardware scan.
@@ -114,53 +129,53 @@ environment.gnome.excludePackages = with pkgs; [
   package = pkgs.mysql84; 
   };
 
-  environment.systemPackages = with pkgs; [
-     vscode
-     obs-studio  
-     obsidian
+environment.systemPackages = with pkgs; [
+     # --- b1 ---
+     b1.spotiflac
+     b1.obsidian
+     b1.easyeffects
+     b1.lutris
+
+     # --- b2 ---
+     b2.vscode
+     b2.obs-studio  
+     b2.android-tools
+
+     # --- b3 ---
+     b3.brave
+     b3.onlyoffice-desktopeditors
+     b3.mysql-workbench
+     b3.localsend
+
+     # --- non batched ---
      fastfetch
-     # gnome-tweaks     
      bibata-cursors    
      phinger-cursors  
      vanilla-dmz 
      foot
      btop
-     brave
-     easyeffects
-     spotify
-     spotiflac
      cava
      gparted
      dysk
-
-     #gpu-screen-recorder-gtk
-     onlyoffice-desktopeditors
-     localsend
-     
-     lutris
-     wine
-
-     #android-studio
-     android-tools
-     #jetbrains.idea
-
-     mysql-workbench
      mysql84
-     
      inputs.zen-browser.packages."${pkgs.system}".default
      inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default
-
      inputs.freesmlauncher.packages.${pkgs.system}.freesmlauncher
-
      git
      jdk
      gcc
      gnumake
-
      nodejs
      live-server
-
      xwayland-satellite
+
+     # --- commented ---
+     # gnome-tweaks     
+     # spotify
+     # gpu-screen-recorder-gtk
+     # wine
+     # android-studio
+     # jetbrains.idea
    ];
   
   # Fonts Configuration
