@@ -17,6 +17,10 @@ let
     inherit (pkgs) system;
     config.allowUnfree = true;
   };
+  b5 = import inputs.nixpkgs-batch5 {
+    inherit (pkgs) system;
+    config.allowUnfree = true;
+  };
 in
 
 let
@@ -146,7 +150,7 @@ environment.systemPackages = (with pkgs; [
      b1.spotiflac
      b1.obsidian
      b1.easyeffects
-     b1.lutris
+     #b1.lutris
 
      # --- b2 ---
      b2.vscode
@@ -157,7 +161,7 @@ environment.systemPackages = (with pkgs; [
      b3.brave
      b3.onlyoffice-desktopeditors
      b3.mysql-workbench
-     b3.localsend
+     #b3.localsend
 
      # --- b4 ---
      b4.jdk
@@ -165,28 +169,42 @@ environment.systemPackages = (with pkgs; [
      b4.gcc
      b4.nodejs
 
-     # --- non batched ---
-     fastfetch
-     bibata-cursors    
-     phinger-cursors  
-     vanilla-dmz 
-     foot
-     btop
-     cava
-     gparted
-     dysk
-     git
-     gnumake
-     live-server
-     xwayland-satellite
+     b5.fastfetch
+     b5.ncdu
+     b5.bibata-cursors    
+     b5.phinger-cursors  
+     b5.vanilla-dmz 
+     b5.foot
+     b5.btop
+     b5.cava
+     b5.gparted
+     b5.dysk
+     b5.git
+     b5.gnumake
+     b5.live-server
+     b5.xwayland-satellite
 
      # --- commented ---
+     # fastfetch
+     # ncdu
+     # bibata-cursors    
+     # phinger-cursors  
+     # vanilla-dmz 
+     # foot
+     # btop
+     # cava
+     # gparted
+     # dysk
+     # git
+     # gnumake
+     # live-server
+     # xwayland-satellite
      # gnome-tweaks     
-     #spotify
-     #gpu-screen-recorder-gtk
-     #wine
-     #android-studio
-     #jetbrains.idea
+     # spotify
+     # gpu-screen-recorder-gtk
+     # wine
+     # android-studio
+     # jetbrains.idea
    ]) ++ custom;
   
   # Fonts Configuration
@@ -228,6 +246,8 @@ environment.systemPackages = (with pkgs; [
     "com.github.neithern.g4music"
     "io.mrarm.mcpelauncher"
     "com.google.AndroidStudio"
+    "org.localsend.localsend_app"
+    "net.lutris.Lutris"
   ];
 
 
@@ -255,17 +275,17 @@ environment.systemPackages = (with pkgs; [
     ];
   };
 
-  boot.loader.systemd-boot.configurationLimit = 2;
+  boot.loader.systemd-boot.configurationLimit = 1;
 
   nix.gc = {
     automatic = true;
-    dates = "weekly";
+    dates = "daily";
   };
 
   systemd.services.nix-gc.wants = [ "nix-gen-gc.service" ];
   systemd.services.nix-gen-gc = {
-    description = "Delete all but the last 2 NixOS generations";
-    script = "exec ${config.nix.package.out}/bin/nix-env --profile /nix/var/nix/profiles/system --delete-generations +2";
-    serviceConfig.Type = "oneshot";
-  };
+  description = "Delete all old NixOS generations except current";
+  script = "exec ${config.nix.package.out}/bin/nix-env --profile /nix/var/nix/profiles/system --delete-generations old";
+  serviceConfig.Type = "oneshot";
+};
 }

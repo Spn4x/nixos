@@ -8,6 +8,7 @@
     nixpkgs-batch2.url = "github:nixos/nixpkgs/nixos-26.05";
     nixpkgs-batch3.url = "github:nixos/nixpkgs/nixos-26.05";
     nixpkgs-batch4.url = "github:nixos/nixpkgs/nixos-26.05";
+    nixpkgs-batch5.url = "github:nixos/nixpkgs/nixos-26.05";
 
     # nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     nix-flatpak.url = "github:gmodena/nix-flatpak";
