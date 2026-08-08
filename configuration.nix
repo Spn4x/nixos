@@ -250,6 +250,11 @@ environment.systemPackages = (with pkgs; [
     "net.lutris.Lutris"
   ];
 
+  environment.sessionVariables = {
+    XCURSOR_THEME = "Bibata-Modern-Ice";
+    XCURSOR_SIZE = "24";
+  };
+
 
     zramSwap = {
     enable = true;
