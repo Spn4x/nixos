@@ -54,11 +54,13 @@ in
   services.tlp = {
     enable = true;
     settings = {
-      START_CHARGE_THRESH_BAT0 = 70;
+      START_CHARGE_THRESH_BAT0 = 78;
       STOP_CHARGE_THRESH_BAT0 = 80;
     };
   };
   hardware.bluetooth.enable = true;
+  hardware.bluetooth.powerOnBoot = true;
+  services.blueman.enable = true; 
   services.upower.enable = true;
 
   # Set your time zone.
@@ -161,7 +163,8 @@ environment.systemPackages = (with pkgs; [
      b3.brave
      b3.onlyoffice-desktopeditors
      b3.mysql-workbench
-     #b3.localsend
+     b3.localsend
+     b3.cisco-packet-tracer_9
 
      # --- b4 ---
      b4.jdk
@@ -183,6 +186,8 @@ environment.systemPackages = (with pkgs; [
      b5.gnumake
      b5.live-server
      b5.xwayland-satellite
+     b5.cbonsai
+     b5.ncdu
 
      # --- commented ---
      # fastfetch
