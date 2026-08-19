@@ -142,6 +142,8 @@ environment.gnome.excludePackages = with pkgs; [
 
   programs.gpu-screen-recorder.enable = false;
 
+  programs.nix-ld.enable = true;
+
   services.mysql = {
   enable = true;
   package = pkgs.mysql84; 
@@ -153,6 +155,7 @@ environment.systemPackages = (with pkgs; [
      b1.obsidian
      b1.easyeffects
      #b1.lutris
+     b1.beeper
 
      # --- b2 ---
      b2.vscode
