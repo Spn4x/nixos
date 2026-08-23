@@ -1,6 +1,10 @@
 { config, pkgs, inputs, freesmlauncher, ... }:
 
 let
+  pt = import inputs.nixpkgs-pt {
+    inherit (pkgs) system;
+    config.allowUnfree = true;
+  };
   b1 = import inputs.nixpkgs-batch1 {
     inherit (pkgs) system;
     config.allowUnfree = true;
@@ -138,6 +142,12 @@ environment.gnome.excludePackages = with pkgs; [
   programs.kdeconnect.enable = true;
   nixpkgs.config.allowUnfree = true;
 
+
+  virtualisation.waydroid.enable = true;
+  networking.nftables.enable = false;
+  networking.firewall.enable = true;
+
+
   services.thermald.enable = true;
 
   programs.gpu-screen-recorder.enable = false;
@@ -161,13 +171,15 @@ environment.systemPackages = (with pkgs; [
      b2.vscode
      b2.obs-studio  
      b2.android-tools
-
+     b2.waydroid
      # --- b3 ---
      b3.brave
      b3.onlyoffice-desktopeditors
      b3.mysql-workbench
-     b3.localsend
-     b3.cisco-packet-tracer_9
+     #b3.localsend
+     
+     
+     pt.cisco-packet-tracer_9
 
      # --- b4 ---
      b4.jdk
