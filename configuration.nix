@@ -143,7 +143,7 @@ environment.gnome.excludePackages = with pkgs; [
   nixpkgs.config.allowUnfree = true;
 
 
-  virtualisation.waydroid.enable = true;
+  virtualisation.waydroid.enable = false;
   networking.nftables.enable = false;
   networking.firewall.enable = true;
 
@@ -171,7 +171,7 @@ environment.systemPackages = (with pkgs; [
      b2.vscode
      b2.obs-studio  
      b2.android-tools
-     b2.waydroid
+     #  b2.waydroid
      # --- b3 ---
      b3.brave
      b3.onlyoffice-desktopeditors
