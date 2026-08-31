@@ -166,6 +166,7 @@ environment.systemPackages = (with pkgs; [
      b1.easyeffects
      #b1.lutris
      b1.beeper
+     b1.discord
 
      # --- b2 ---
      b2.vscode
