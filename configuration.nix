@@ -173,6 +173,9 @@ environment.systemPackages = (with pkgs; [
      b2.obs-studio  
      b2.android-tools
      #  b2.waydroid
+     b2.gnome-tweaks
+     b2.nwg-look
+
      # --- b3 ---
      b3.brave
      b3.onlyoffice-desktopeditors
