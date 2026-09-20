@@ -165,7 +165,7 @@ environment.systemPackages = (with pkgs; [
      b1.obsidian
      b1.easyeffects
      #b1.lutris
-     b1.beeper
+     #b1.beeper
      b1.discord
 
      # --- b2 ---
@@ -173,7 +173,7 @@ environment.systemPackages = (with pkgs; [
      b2.obs-studio  
      b2.android-tools
      #  b2.waydroid
-     b2.gnome-tweaks
+     #b2.gnome-tweaks
      b2.nwg-look
 
      # --- b3 ---
