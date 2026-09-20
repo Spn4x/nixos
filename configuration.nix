@@ -129,7 +129,7 @@ environment.gnome.excludePackages = with pkgs; [
   # Define a user account.
   users.users."meismeric" = {
     isNormalUser = true;
-    uid = 1001;
+    uid = 1000;
     description = "Meismeric";
     shell = pkgs.zsh;
     extraGroups = [ "networkmanager" "wheel" ];

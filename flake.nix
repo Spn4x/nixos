@@ -4,6 +4,11 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-26.05";
 
+    home-manager = {
+      url = "github:nix-community/home-manager/release-26.05";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     nixpkgs-batch1.url = "github:nixos/nixpkgs/nixos-26.05";
     nixpkgs-batch2.url = "github:nixos/nixpkgs/nixos-26.05";
     nixpkgs-batch3.url = "github:nixos/nixpkgs/nixos-26.05";
@@ -29,7 +34,7 @@
    # };
    };
 
-  outputs = { self, nixpkgs, zen-browser, freesmlauncher, ... }@inputs: 
+  outputs = { self, nixpkgs, home-manager, zen-browser, freesmlauncher, ... }@inputs: 
   let
     system = "x86_64-linux";
     
@@ -48,6 +53,14 @@
       modules = [
         inputs.nix-flatpak.nixosModules.nix-flatpak
         ./configuration.nix
+
+        home-manager.nixosModules.home-manager
+        {
+          home-manager.useGlobalPkgs = true;
+          home-manager.useUserPackages = true;
+          home-manager.backupFileExtension = "backup";
+          home-manager.users.meismeric = import ./home.nix;
+        }
       ];
     };
   };
