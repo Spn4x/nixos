@@ -25,6 +25,10 @@ let
     inherit (pkgs) system;
     config.allowUnfree = true;
   };
+  unstable = import inputs.nixpkgs-unstable {
+    inherit (pkgs) system;
+    config.allowUnfree = true;
+  };
 in
 
 let
@@ -160,6 +164,9 @@ environment.gnome.excludePackages = with pkgs; [
   };
 
 environment.systemPackages = (with pkgs; [
+     # --- Unstable ---
+     unstable.umbriel  
+
      # --- b1 ---
      b1.spotiflac
      b1.obsidian

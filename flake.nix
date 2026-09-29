@@ -8,7 +8,7 @@
       url = "github:nix-community/home-manager/release-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
+    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-batch1.url = "github:nixos/nixpkgs/nixos-26.05";
     nixpkgs-batch2.url = "github:nixos/nixpkgs/nixos-26.05";
     nixpkgs-batch3.url = "github:nixos/nixpkgs/nixos-26.05";
