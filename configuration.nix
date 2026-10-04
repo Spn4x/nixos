@@ -165,7 +165,7 @@ environment.gnome.excludePackages = with pkgs; [
 
 environment.systemPackages = (with pkgs; [
      # --- Unstable ---
-     unstable.umbriel  
+     #unstable.umbriel  
 
      # --- b1 ---
      b1.spotiflac
