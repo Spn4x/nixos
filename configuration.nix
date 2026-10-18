@@ -130,16 +130,6 @@ environment.gnome.excludePackages = with pkgs; [
     pulse.enable = true;
   };
 
-  # Define a user account.
-  users.users."meismeric" = {
-    isNormalUser = true;
-    uid = 1000;
-    description = "Meismeric";
-    shell = pkgs.zsh;
-    extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs; [];
-  };
-
   programs.zsh.enable = true;
   programs.firefox.enable = false;
   programs.niri.enable = true;
@@ -149,7 +139,7 @@ environment.gnome.excludePackages = with pkgs; [
 
   virtualisation.waydroid.enable = false;
   networking.nftables.enable = false;
-  networking.firewall.enable = true;
+  networking.firewall.enable = false;
 
 
   services.thermald.enable = true;
@@ -159,9 +149,52 @@ environment.gnome.excludePackages = with pkgs; [
   programs.nix-ld.enable = true;
 
   services.mysql = {
+      enable = true;
+      package = pkgs.mysql84;
+      initialDatabases = [
+        { name = "dev_db"; }
+      ];
+      ensureUsers = [
+        {
+          name = "devuser";
+          ensurePermissions = {
+            "dev_db.*" = "ALL PRIVILEGES";
+          };
+        }
+      ];
+    };
+
+  services.sunshine = {
   enable = true;
-  package = pkgs.mysql84; 
+  autoStart = true;
+  capSysAdmin = true; 
+  openFirewall = true; 
+};
+
+  hardware.uinput.enable = true;
+  hardware.graphics = {
+    enable = true;
+    extraPackages = with pkgs; [
+      intel-media-driver # iHD driver for 8th Gen (UHD 620)
+      intel-vaapi-driver      
+      libva
+      libva-utils
+    ];
   };
+
+  users.users."meismeric" = {
+    isNormalUser = true;
+    uid = 1000;
+    description = "Meismeric";
+    shell = pkgs.zsh;
+    extraGroups = [ "networkmanager" "wheel" "video" "render" "input" "uinput" ];
+    packages = with pkgs; [];
+  };
+  
+  services.udev.extraRules = ''
+  KERNEL=="uinput", SUBSYSTEM=="misc", OPTIONS+="static_node=uinput", TAG+="uaccess", MODE="0660", GROUP="uinput"
+'';
+
 
 environment.systemPackages = (with pkgs; [
      # --- Unstable ---
@@ -197,6 +230,24 @@ environment.systemPackages = (with pkgs; [
      b4.mysql84
      b4.gcc
      b4.nodejs
+     
+     # PHP + MySQL extensions + Composer
+     (b4.php.buildEnv {
+       extensions = ({ enabled, all }: enabled ++ (with all; [
+         mysqli
+         pdo_mysql
+         mbstring
+         curl
+         zip
+         openssl
+       ]));
+       extraConfig = ''
+         memory_limit = 512M
+         upload_max_filesize = 64M
+         post_max_size = 64M
+       '';
+     })
+     b4.phpPackages.composer
 
      b5.fastfetch
      b5.ncdu
@@ -284,6 +335,7 @@ environment.systemPackages = (with pkgs; [
   environment.sessionVariables = {
     XCURSOR_THEME = "Bibata-Modern-Ice";
     XCURSOR_SIZE = "24";
+    LIBVA_DRIVER_NAME = "iHD";
   };
 
 
