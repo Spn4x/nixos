@@ -96,6 +96,10 @@ in
   services.displayManager.gdm.enable = true;
   services.desktopManager.gnome.enable = true;
   services.openssh.enable = true;
+
+  # Run all appimages natively
+  programs.appimage.enable = true;
+  programs.appimage.binfmt = true;
   
 
 environment.gnome.excludePackages = with pkgs; [
@@ -207,6 +211,7 @@ environment.systemPackages = (with pkgs; [
      #b1.lutris
      #b1.beeper
      b1.discord
+     b1.gnome-sound-recorder
 
      # --- b2 ---
      b2.vscode
@@ -215,6 +220,7 @@ environment.systemPackages = (with pkgs; [
      #  b2.waydroid
      #b2.gnome-tweaks
      b2.nwg-look
+     b2.scrcpy
 
      # --- b3 ---
      b3.brave
@@ -265,6 +271,7 @@ environment.systemPackages = (with pkgs; [
      b5.xwayland-satellite
      b5.cbonsai
      b5.ncdu
+     b5.tree
 
      # --- commented ---
      # fastfetch
