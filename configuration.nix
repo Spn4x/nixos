@@ -236,6 +236,7 @@ environment.systemPackages = (with pkgs; [
      b4.mysql84
      b4.gcc
      b4.nodejs
+     b4.godot_4
      
      # PHP + MySQL extensions + Composer
      (b4.php.buildEnv {
