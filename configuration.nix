@@ -178,6 +178,7 @@ environment.gnome.excludePackages = with pkgs; [
   hardware.uinput.enable = true;
   hardware.graphics = {
     enable = true;
+    enable32Bit = true;
     extraPackages = with pkgs; [
       intel-media-driver # iHD driver for 8th Gen (UHD 620)
       intel-vaapi-driver      
