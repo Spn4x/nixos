@@ -152,6 +152,8 @@ environment.gnome.excludePackages = with pkgs; [
 
   programs.nix-ld.enable = true;
 
+  virtualisation.docker.enable = true;
+
   services.mysql = {
       enable = true;
       package = pkgs.mysql84;
@@ -192,7 +194,7 @@ environment.gnome.excludePackages = with pkgs; [
     uid = 1000;
     description = "Meismeric";
     shell = pkgs.zsh;
-    extraGroups = [ "networkmanager" "wheel" "video" "render" "input" "uinput" ];
+    extraGroups = [ "networkmanager" "wheel" "video" "render" "input" "uinput" "docker" ];
     packages = with pkgs; [];
   };
   
