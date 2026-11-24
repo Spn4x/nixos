@@ -60,12 +60,19 @@ in
 
   # Enable TLP with battery charge thresholds
   services.tlp = {
-    enable = true;
-    settings = {
-      START_CHARGE_THRESH_BAT0 = 78;
-      STOP_CHARGE_THRESH_BAT0 = 80;
+      enable = true;
+      settings = {
+        START_CHARGE_THRESH_BAT0 = 78;
+        STOP_CHARGE_THRESH_BAT0 = 80;
+
+        SATA_LINKPWR_ON_AC = "max_performance";
+        SATA_LINKPWR_ON_BAT = "max_performance"; 
+
+        CPU_ENERGY_PERF_POLICY_ON_AC = "performance";
+        CPU_ENERGY_PERF_POLICY_ON_BAT = "balance_performance";
+      };
     };
-  };
+    
   hardware.bluetooth.enable = true;
   hardware.bluetooth.powerOnBoot = true;
   services.blueman.enable = true; 
@@ -145,13 +152,10 @@ environment.gnome.excludePackages = with pkgs; [
   networking.nftables.enable = false;
   networking.firewall.enable = false;
 
-
-  services.thermald.enable = true;
-
+  services.thermald.enable = false;
+  services.throttled.enable = true;
   programs.gpu-screen-recorder.enable = false;
-
   programs.nix-ld.enable = true;
-
   virtualisation.docker.enable = true;
 
   services.mysql = {
@@ -187,6 +191,13 @@ environment.gnome.excludePackages = with pkgs; [
       libva
       libva-utils
     ];
+  };
+
+  boot.kernel.sysctl = {
+    "vm.swappiness" = 180;
+    "vm.watermark_boost_factor" = 0;
+    "vm.watermark_scale_factor" = 125;
+    "vm.page-cluster" = 0;
   };
 
   users.users."meismeric" = {
@@ -330,6 +341,13 @@ environment.systemPackages = (with pkgs; [
       monospace = [ "JetBrainsMono Nerd Font" "Noto Sans Mono CJK JP" ];
       emoji     = [ "Noto Color Emoji" ];
     };
+  };
+
+  fileSystems."/var/lib/flatpak" = {
+  device = "/home/.flatpak-system";
+  fsType = "none";
+  options = [ "bind" ];
+  depends = [ "/home" ];
   };
 
   # Declarative Flatpaks
