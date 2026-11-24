@@ -9,11 +9,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
-    nixpkgs-batch1.url = "github:nixos/nixpkgs/nixos-26.05";
-    nixpkgs-batch2.url = "github:nixos/nixpkgs/nixos-26.05";
-    nixpkgs-batch3.url = "github:nixos/nixpkgs/nixos-26.05";
-    nixpkgs-batch4.url = "github:nixos/nixpkgs/nixos-26.05";
-    nixpkgs-batch5.url = "github:nixos/nixpkgs/nixos-26.05";
 
     # Pinned Packet Tracer input
     nixpkgs-pt.url = "github:nixos/nixpkgs?rev=02e08985a27c65ffd33d434eeb2e660a2e4dc84d";

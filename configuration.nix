@@ -219,41 +219,41 @@ environment.systemPackages = (with pkgs; [
      #unstable.umbriel  
 
      # --- b1 ---
-     b1.spotiflac
-     b1.obsidian
-     b1.easyeffects
-     #b1.lutris
-     #b1.beeper
-     b1.discord
-     b1.gnome-sound-recorder
+     spotiflac
+     obsidian
+     easyeffects
+     #lutris
+     #beeper
+     discord
+     gnome-sound-recorder
 
      # --- b2 ---
-     b2.vscode
-     b2.obs-studio  
-     b2.android-tools
-     #  b2.waydroid
-     #b2.gnome-tweaks
-     b2.nwg-look
-     b2.scrcpy
+     vscode
+     obs-studio  
+     android-tools
+     #  waydroid
+     #gnome-tweaks
+     nwg-look
+     scrcpy
 
      # --- b3 ---
-     b3.brave
-     b3.onlyoffice-desktopeditors
-     b3.mysql-workbench
-     #b3.localsend
+     brave
+     onlyoffice-desktopeditors
+     mysql-workbench
+     #localsend
      
      
      pt.cisco-packet-tracer_9
 
      # --- b4 ---
-     b4.jdk
-     b4.mysql84
-     b4.gcc
-     b4.nodejs
-     b4.godot_4
+     jdk
+     mysql84
+     gcc
+     nodejs
+     godot_4
      
      # PHP + MySQL extensions + Composer
-     (b4.php.buildEnv {
+     (php.buildEnv {
        extensions = ({ enabled, all }: enabled ++ (with all; [
          mysqli
          pdo_mysql
@@ -268,25 +268,25 @@ environment.systemPackages = (with pkgs; [
          post_max_size = 64M
        '';
      })
-     b4.phpPackages.composer
+     phpPackages.composer
 
-     b5.fastfetch
-     b5.ncdu
-     b5.bibata-cursors    
-     b5.phinger-cursors  
-     b5.vanilla-dmz 
-     b5.foot
-     b5.btop
-     b5.cava
-     b5.gparted
-     b5.dysk
-     b5.git
-     b5.gnumake
-     b5.live-server
-     b5.xwayland-satellite
-     b5.cbonsai
-     b5.ncdu
-     b5.tree
+     fastfetch
+     ncdu
+     bibata-cursors    
+     phinger-cursors  
+     vanilla-dmz 
+     foot
+     btop
+     cava
+     gparted
+     dysk
+     git
+     gnumake
+     live-server
+     xwayland-satellite
+     cbonsai
+     ncdu
+     tree
 
      # --- commented ---
      # fastfetch
