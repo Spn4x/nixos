@@ -5,26 +5,6 @@ let
     inherit (pkgs) system;
     config.allowUnfree = true;
   };
-  b1 = import inputs.nixpkgs-batch1 {
-    inherit (pkgs) system;
-    config.allowUnfree = true;
-  };
-  b2 = import inputs.nixpkgs-batch2 {
-    inherit (pkgs) system;
-    config.allowUnfree = true;
-  };
-  b3 = import inputs.nixpkgs-batch3 {
-    inherit (pkgs) system;
-    config.allowUnfree = true;
-  };
-  b4 = import inputs.nixpkgs-batch4 {
-    inherit (pkgs) system;
-    config.allowUnfree = true;
-  };
-  b5 = import inputs.nixpkgs-batch5 {
-    inherit (pkgs) system;
-    config.allowUnfree = true;
-  };
   unstable = import inputs.nixpkgs-unstable {
     inherit (pkgs) system;
     config.allowUnfree = true;
@@ -213,7 +193,6 @@ environment.gnome.excludePackages = with pkgs; [
   KERNEL=="uinput", SUBSYSTEM=="misc", OPTIONS+="static_node=uinput", TAG+="uaccess", MODE="0660", GROUP="uinput"
 '';
 
-
 environment.systemPackages = (with pkgs; [
      # --- Unstable ---
      #unstable.umbriel  
@@ -241,7 +220,6 @@ environment.systemPackages = (with pkgs; [
      onlyoffice-desktopeditors
      mysql-workbench
      #localsend
-     
      
      pt.cisco-packet-tracer_9
 
