@@ -28,6 +28,7 @@ in
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+  boot.kernelParams = [ "i915.enable_psr=0" ];
 
   # Use latest kernel.
   boot.kernelPackages = pkgs.linuxPackages_latest;
@@ -40,19 +41,19 @@ in
 
   # Enable TLP with battery charge thresholds
   services.tlp = {
-      enable = true;
-      settings = {
-        START_CHARGE_THRESH_BAT0 = 78;
-        STOP_CHARGE_THRESH_BAT0 = 80;
+    enable = true;
+    settings = {
+      START_CHARGE_THRESH_BAT0 = 78;
+      STOP_CHARGE_THRESH_BAT0 = 80;
 
-        SATA_LINKPWR_ON_AC = "max_performance";
-        SATA_LINKPWR_ON_BAT = "max_performance"; 
-
-        CPU_ENERGY_PERF_POLICY_ON_AC = "performance";
-        CPU_ENERGY_PERF_POLICY_ON_BAT = "balance_performance";
-      };
+      SATA_LINKPWR_ON_AC = "max_performance";
+      SATA_LINKPWR_ON_BAT = "max_performance"; 
+      
+      CPU_ENERGY_PERF_POLICY_ON_AC = "balance_performance";
+      CPU_ENERGY_PERF_POLICY_ON_BAT = "balance_power";
     };
-    
+  };
+      
   hardware.bluetooth.enable = true;
   hardware.bluetooth.powerOnBoot = true;
   services.blueman.enable = true; 
